@@ -30,4 +30,21 @@ module.exports = function (app) {
         });
 
     });
+
+    app.delete('/api/todos:todo_id', function(){
+        Todo.remove({
+            _id : req.params.todo_id
+        }, function(err, todo){
+            if(err){
+                res.send(err);
+            }
+            Todo.find(function (err, todos) {
+                if (err) {
+                    res.send(err);
+                }
+                res.json(todos);
+            });
+
+        });
+    });
 }
