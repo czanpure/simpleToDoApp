@@ -20,6 +20,10 @@ app.use(methodOverride());
 
 require('./app/routes.js')(app);
 
+app.get('*', function(req, res){
+    res.sendfile('./public/index.html');
+});
+
 app.listen(8082);
 console.log('App Listening on port 8082');
 
